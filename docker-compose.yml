@@ -1,0 +1,31 @@
+version: "3.8"
+services:
+  ###traefik
+  ###frontend
+
+  api:
+    build:
+      context: docker
+      dockerfile: development/nginx/Dockerfile
+    volumes:
+      - ./api:/app
+    ports:
+      - "80:80"
+
+  api-php-fpm:
+    build:
+      context: docker
+      dockerfile: development/php-fpm/Dockerfile
+    volumes:
+      - ./api:/app
+
+  api-php-cli:
+    build:
+      context: docker
+      dockerfile: development/php-cli/Dockerfile
+    volumes:
+      - ./api:/app
+
+
+
+
