@@ -26,6 +26,18 @@ services:
     volumes:
       - ./api:/app
 
+  postgresql:
+    image: postgres:16-alpine3.18
+    environment:
+      POSTGRES_HOST: postgresql
+      POSTGRES_USER: app
+      POSTGRES_DB: app
+      POSTGRES_PASSWORD: password
+    volumes:
+      - ./docker/postgresql:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
 
 
 
