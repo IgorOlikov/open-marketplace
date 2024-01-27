@@ -1,15 +1,14 @@
 FROM php:8.2-cli-alpine3.16
 
-RUN apk add --update linux-headers --no-cache autoconf g++ make \
-    && pecl install xdebug \
-    && rm -rf /tmp/pear \
-    && docker-php-ext-enable xdebug
 
-RUN apk add --no-cache postgresql-dev \
-    && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
-    && docker-php-ext-install pdo_pgsql pgsql
 
-RUN apk add --no-cache unzip
+RUN apk update && apk upgrade
+RUN apk --no-cache add autoconf g++ make && pecl install xdebug && docker-php-ext-enable xdebug && rm -rf /tmp/pear; apk del autoconf g++ make
+RUN apk add libpq-dev
+RUN docker-php-ext-install pdo pdo_pgsql pgsql
+
+#RUN pecl install xdebug-3.3.0 \
+ #   && docker-php-ext-enable xdebug
 
 RUN mv $PHP_INI_DIR/php.ini-development $PHP_INI_DIR/php.ini
 
