@@ -12,7 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('reviews', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
+            $table->foreignUuid('product_id')->constrained('products');
+            $table->foreignUuid('user_id')->constrained('users');
+            $table->string('advantages');
+            $table->string('disadvantages');
+            $table->text('comment');
             $table->timestamps();
         });
     }
