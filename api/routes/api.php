@@ -6,6 +6,13 @@ use App\Models\User;
 
 Route::get('/', function (){
 
-    $users = User::all();
-    return response($users);
+    //$users = User::all();
+    //return response($users);
+
+
+
+
+
+
+
 });
