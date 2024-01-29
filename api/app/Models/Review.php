@@ -12,8 +12,14 @@ class Review extends Model
     use HasFactory,HasUuids;
 
 
-    public function image(): MorphMany
+    public function images(): MorphMany
     {
         return $this->morphMany(Image::class, 'imageable');
     }
+
+    public function comments(): MorphMany
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
+
 }

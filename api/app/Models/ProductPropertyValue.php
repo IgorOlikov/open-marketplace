@@ -6,19 +6,18 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class CartProduct extends Model
+class ProductPropertyValue extends Model
 {
     use HasFactory,HasUuids;
 
-    public function cart(): BelongsTo
+    public function property(): BelongsTo
     {
-        return $this->belongsTo(Cart::class);
+        return $this->belongsTo(ProductProperty::class);
     }
 
-    public function products(): HasMany
+    public function product(): BelongsTo
     {
-        return $this->hasMany(Product::class);
+        return $this->belongsTo(Product::class);
     }
 }
