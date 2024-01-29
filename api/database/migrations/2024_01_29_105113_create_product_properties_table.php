@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('product_properties', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name');
-            $table->unsignedDouble('price',8,2);
-            $table->text('short_description');
-            $table->foreignUuid('shop_id')->constrained('shops');
+            $table->text('full_description');
+            $table->jsonb('properties');
             $table->foreignUuid('category_id')->constrained('categories');
             $table->foreignUuid('sub_category_id')->constrained('sub_categories');
+            $table->foreignUuid('product_id')->constrained('products');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('product_properties');
     }
 };
