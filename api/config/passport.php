@@ -53,6 +53,8 @@ return [
     | get used while issuing fresh personal access tokens to your users.
     |
     */
+    'CONTAINER_NGINX_URL' => env('CONTAINER_NGINX_URL'),
+
 
     'personal_access_client' => [
         'id' => env('PASSPORT_PERSONAL_ACCESS_CLIENT_ID'),
