@@ -24,28 +24,20 @@ class OAuthController extends Controller
 
     public function token(Request $request): array
     {
-
         $response = $this->tokenGenerator
             ->generateTokens($this->credentials($request), static::TYPE_PASSWORD);
 
         if ($response->status() !== Response::HTTP_OK) {
             throw ValidationException::withMessages(['email' => [trans('auth.failed')]]);
         }
-
         return $response->json();
     }
 
     public function refresh(Request $request)
     {
-        //dd($request);
-
         return $this->tokenGenerator
             ->generateTokens($request->only('refresh_token'), static::TYPE_REFRESH);
-
-
-
     }
-
 
     private function credentials(Request $request): array
     {
