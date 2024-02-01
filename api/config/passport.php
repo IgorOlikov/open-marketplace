@@ -59,4 +59,14 @@ return [
         'secret' => env('PASSPORT_PERSONAL_ACCESS_CLIENT_SECRET'),
     ],
 
+    'password_grant_client' => [
+        'id' => env('PASSPORT_GRANT_PASSWORD_CLIENT_ID'),
+        'secret' => env('PASSPORT_GRANT_PASSWORD_CLIENT_SECRET')
+    ],
+
+    'tokens_lifetime' => [
+        'minutes_for_access' => env('PASSPORT_ACCESS_TOKEN_LIFETIME_IN_MINUTES'),
+        'days_for_refresh' => env('PASSPORT_REFRESH_TOKEN_LIFETIME_IN_DAYS'),
+    ],
+
 ];

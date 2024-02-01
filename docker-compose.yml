@@ -1,4 +1,5 @@
 version: "3.8"
+
 services:
   traefik:
     image: traefik:2.10
@@ -38,6 +39,7 @@ services:
 
 
   api:
+    container_name: nginx-api
     build:
       context: api/docker
       dockerfile: development/nginx/Dockerfile
@@ -45,7 +47,6 @@ services:
       - ./api:/app
     ports:
       - "81:80"
-    container_name: api-development
     networks:
       - traefik-public
       - default
@@ -55,6 +56,9 @@ services:
       - traefik.http.routers.api.rule=Host(`api.localhost`)
       - traefik.http.routers.api.entryPoints=http
       - traefik.http.services.api.loadBalancer.server.port=80
+
+
+
 
 
   api-php-fpm:
@@ -90,6 +94,8 @@ services:
 networks:
   traefik-public:
       name: traefik-public
+
+
 
 
 
